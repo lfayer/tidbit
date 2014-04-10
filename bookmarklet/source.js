@@ -1,6 +1,10 @@
 var title = document.title;
 var location = document.location;
-var hostname = "http://YOUR_HOSTNAME"; // ADD YOUR HOSTNAME FOR TIDBIT SERVICE
+var protocol = "http:";
+if (window.location.protocol === "https:") {
+   protocol = "https:";
+}
+var hostname = protocol+"//YOUR_HOSTNAME"; // ADD YOUR HOSTNAME FOR TIDBIT SERVICE
 
 if ($("#tidbit").length == 0) {
     $("body").append("\
