@@ -1,0 +1,30 @@
+<% include header %>
+<script type='text/javascript'>
+
+/* Bookmarking form handler submission*/
+$(function() {
+    $("#tidbit_form").submit(function(event) {
+
+      event.preventDefault();
+
+      var $form = $( this ),
+          url = $form.attr( 'action' );
+
+      var posting = $.post( url,{ l: "<%= p_location %>", t: "<%= p_title %>", tags: $("#tidbit_form input[name=tags]").map(function(){return $(this).val();}).get()});
+
+      posting.done(function( data ) {
+        alert('success');
+      });
+    });
+});
+</script>
+<form name="tidbit_form" id="tidbit_form" action="/store">
+<b><%= p_title %></b><br>
+<i><a href="<%= p_location %>" target="_blank"><%= p_location %></a>
+<p>
+<ul id="myTags"></ul>
+<p align="right">
+<input type="submit" value="Book it" id="bookit">
+</p>
+</form>
+<% include footer %>
